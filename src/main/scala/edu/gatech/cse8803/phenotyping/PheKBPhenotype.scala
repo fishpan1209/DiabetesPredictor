@@ -1,6 +1,5 @@
 /**
-  * @author Hang Su <hangsu@gatech.edu>,
-  * @author Sungtae An <stan84@gatech.edu>,
+  * @author Ting Pan <tpan35@gatech.edu>,
   */
 
 package edu.gatech.cse8803.phenotyping
@@ -17,14 +16,7 @@ object T2dmPhenotype {
     * @return tuple in the format of (patient-ID, label). label = 1 if the patient is case, label = 2 if control, 3 otherwise
     */
   def transform(medication: RDD[Medication], labResult: RDD[LabResult], diagnostic: RDD[Diagnostic]): RDD[(String, Int)] = {
-    /**
-      * Remove the place holder and implement your code here.
-      * Hard code the medication, lab, icd code etc for phenotype like example code below
-      * as while testing your code we expect your function have no side effect.
-      * i.e. Do NOT read from file or write file
-      *
-      * You don't need to follow the example placeholder codes below exactly, once you return the same type of return.
-      */
+    
 
     val sc = medication.sparkContext
     val TotalPatients = diagnostic.map(_.patientID).distinct()
