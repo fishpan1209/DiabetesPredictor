@@ -2,7 +2,7 @@
 package edu.gatech.cse8803.clustering
 
 /**
-  * @author Hang Su <hangsu@gatech.edu>
+  * @author Ting Pan <tpan35@gatech.edu>
   */
 
 
@@ -29,7 +29,7 @@ object NMF {
   def run(V: RowMatrix, k: Int, maxIterations: Int, convergenceTol: Double = 1e-4): (RowMatrix, BDM[Double]) = {
 
     /**
-      * TODO 1: Implement your code here
+      * 
       * Initialize W, H randomly
       * Calculate the initial error (Euclidean distance between V and W * H)
       */
@@ -40,7 +40,7 @@ object NMF {
     val InialE = error(V,WH)
     println("Initial Eorror: "+InialE)
     /**
-      * TODO 2: Implement your code here
+      * 
       * Iteratively update W, H in a parallel fashion until error falls below the tolerance value
       * The updating equations are,
       * H = H.* W^T^V ./ (W^T^W H+10e-9)
@@ -76,8 +76,6 @@ object NMF {
       iterations += 1
     } while (iterations < maxIterations && delta > convergenceTol)
 
-
-    /** TODO: Remove the placeholder for return and replace with correct values */
     (W, H)
   }
 
@@ -91,8 +89,8 @@ object NMF {
 
 
   /**
-    * TODO: Implement the helper functions if you needed
-    * Below are recommended helper functions for matrix manipulation
+    * 
+    * recommended helper functions for matrix manipulation
     * For the implementation of the first three helper functions (with a null return),
     * you can refer to dotProd and dotDiv whose implementation are provided
     */
