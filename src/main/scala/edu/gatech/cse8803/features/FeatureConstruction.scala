@@ -1,5 +1,5 @@
 /**
- * @author Hang Su
+ * @author Ting Pan
  */
 package edu.gatech.cse8803.features
 
@@ -26,10 +26,7 @@ object FeatureConstruction {
 For lab result, you must average the values for a given test for a given patient. That will be your feature value
    */
   def constructDiagnosticFeatureTuple(diagnostic: RDD[Diagnostic]): RDD[FeatureTuple] = {
-    /**
-     * TODO implement your own code here and remove existing
-     * placeholder code
-     */
+    
     val diag = diagnostic.map(x=>(x.patientID,x.code)).countByValue().map(x=>(x._1,x._2.toDouble))
     diagnostic.sparkContext.parallelize(diag.toSeq)
   }
@@ -41,10 +38,7 @@ For lab result, you must average the values for a given test for a given patient
    * @return RDD of feature tuples
    */
   def constructMedicationFeatureTuple(medication: RDD[Medication]): RDD[FeatureTuple] = {
-    /**
-     * TODO implement your own code here and remove existing
-     * placeholder code
-     */
+    
     val med = medication.map(x=>(x.patientID,x.medicine))
       .countByValue()
       .map(x=>(x._1,x._2.toDouble))
@@ -58,10 +52,7 @@ For lab result, you must average the values for a given test for a given patient
    * @return RDD of feature tuples
    */
   def constructLabFeatureTuple(labResult: RDD[LabResult]): RDD[FeatureTuple] = {
-    /**
-     * TODO implement your own code here and remove existing
-     * placeholder code
-     */
+    
     val lab = labResult.map{x=>
       val feature = (x.patientID,x.testName)
       (feature,(x.value))
@@ -79,10 +70,7 @@ For lab result, you must average the values for a given test for a given patient
    * @return RDD of feature tuples
    */
   def constructDiagnosticFeatureTuple(diagnostic: RDD[Diagnostic], candiateCode: Set[String]): RDD[FeatureTuple] = {
-    /**
-     * TODO implement your own code here and remove existing
-     * placeholder code
-     */
+    
     val diag = diagnostic.filter(d => candiateCode.contains(d.code))
       .map(x=>(x.patientID,x.code))
       .countByValue()
@@ -99,10 +87,7 @@ For lab result, you must average the values for a given test for a given patient
    * @return RDD of feature tuples
    */
   def constructMedicationFeatureTuple(medication: RDD[Medication], candidateMedication: Set[String]): RDD[FeatureTuple] = {
-    /**
-     * TODO implement your own code here and remove existing
-     * placeholder code
-     */
+    
     val med = medication.filter(m=>candidateMedication.contains(m.medicine))
       .map(x=>(x.patientID,x.medicine))
         .countByValue()
@@ -120,10 +105,7 @@ For lab result, you must average the values for a given test for a given patient
    * @return RDD of feature tuples
    */
   def constructLabFeatureTuple(labResult: RDD[LabResult], candidateLab: Set[String]): RDD[FeatureTuple] = {
-    /**
-     * TODO implement your own code here and remove existing
-     * placeholder code
-     */
+   
     val lab = labResult.filter(l=>candidateLab.contains(l.testName))
       .map{x=>
       val feature = (x.patientID,x.testName)
